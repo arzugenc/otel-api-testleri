@@ -46,6 +46,17 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "02 - Rezervasyon Olustur",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
     }
   ]
 }
