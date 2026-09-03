@@ -49,11 +49,66 @@
     },
     {
       "name": "02 - Rezervasyon Olustur",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Rezervasyon oluşturuldu - 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nvar gelenCevap = pm.response.json();\r\npm.environment.set(\"rezervasyonNo\", gelenCevap.bookingid);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"Ahmet\",\r\n  \"lastname\": \"Yilmaz\",\r\n  \"totalprice\": 750,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2026-10-01\",\r\n    \"checkout\": \"2026-10-05\"\r\n  },\r\n  \"additionalneeds\": \"Kahvalti\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{anaUrl}}/booking",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "03-Rezervaasyon detaylarını getir",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. İstek başarılı mı (200 OK)?\r\npm.test(\"Rezervasyon detayları başarıyla getirildi - Durum 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// 2. Dönen veriler doğru kişiye mi ait?\r\npm.test(\"Müşteri adı ve soyadı doğru doğrulanıyor\", function () {\r\n    var yanit = pm.response.json();\r\n    pm.expect(yanit.firstname).to.eql(\"Ahmet\");\r\n    pm.expect(yanit.lastname).to.eql(\"Yilmaz\");\r\n});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "{{anaUrl}}/booking/{{rezervasyonNo}}",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{rezervasyonNo}}"
+          ]
         }
       },
       "response": []
