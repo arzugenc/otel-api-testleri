@@ -163,6 +163,44 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "05-Rezervasyonu sil",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Silme işlemi başarılı mı (201 Created döndü mü)?\r\npm.test(\"Rezervasyon başarıyla silindi - Durum 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "token={{girisAnahtari}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{anaUrl}}/booking/{{rezervasyonNo}}",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{rezervasyonNo}}"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
