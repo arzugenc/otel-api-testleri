@@ -112,6 +112,57 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "04 - Rezervasyonu Guncelle",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Güncelleme başarılı mı (200 OK)?\r\npm.test(\"Rezervasyon başarıyla güncellendi - Durum 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// 2. Fiyat ve istek bilgisi güncellendi mi?\r\npm.test(\"Güncellenen veriler doğru yansıdı\", function () {\r\n    var yanit = pm.response.json();\r\n    pm.expect(yanit.totalprice).to.eql(950);\r\n    pm.expect(yanit.additionalneeds).to.eql(\"Aksam Yemegi ve Otopark\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "token={{girisAnahtari}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"Ahmet\",\r\n  \"lastname\": \"Yilmaz\",\r\n  \"totalprice\": 950,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2026-10-01\",\r\n    \"checkout\": \"2026-10-07\"\r\n  },\r\n  \"additionalneeds\": \"Aksam Yemegi ve Otopark\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{anaUrl}}/booking/{{rezervasyonNo}}",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{rezervasyonNo}}"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
