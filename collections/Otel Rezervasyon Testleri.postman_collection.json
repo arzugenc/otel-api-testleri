@@ -201,6 +201,43 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "06-Hatali Sifre ile Giris",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. İstek sunucuya ulaştı mı?\r\npm.test(\"Sunucu yanıt verdi - Durum 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// 2. Sistem token üretmedi ve hata mesajı verdi mi?\r\npm.test(\"Hatalı girişte token dönmedi ve uyarı mesajı alındı\", function () {\r\n    var yanit = pm.response.json();\r\n    pm.expect(yanit).to.have.property(\"reason\");\r\n    pm.expect(yanit.reason).to.eql(\"Bad credentials\");\r\n    pm.expect(yanit).to.not.have.property(\"token\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"yanlisSifre123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{anaUrl}}/auth",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "auth"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
