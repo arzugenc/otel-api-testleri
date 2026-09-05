@@ -267,6 +267,35 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "08-Gecersiz ID ile Rezervasyon Getir",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Kayıt bulunamadığı için 404 Not Found döndü mü?\r\npm.test(\"Olmayan rezervasyon icin 404 Not Found dondu\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n\r\n// 2. Hata metni kontrolü\r\npm.test(\"Yanit govdesinde 'Not Found' bilgisi alindi\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Not Found\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{anaUrl}}/booking/99999999",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "booking",
+            "99999999"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
