@@ -238,6 +238,35 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "07-Yetkisiz Rezervasyon Silme",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Yetkisiz istek 403 Forbidden ile reddedildi mi?\r\npm.test(\"Yetkisiz silme istegi 403 Forbidden dondu\", function () {\r\n    pm.response.to.have.status(403);\r\n});\r\n\r\n// 2. Yanıt govdesinde Forbidden mesaji var mi?\r\npm.test(\"Hata mesaji 'Forbidden' olarak alindi\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Forbidden\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{anaUrl}}/booking/{{rezervasyonNo}}",
+          "host": [
+            "{{anaUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{rezervasyonNo}}"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
