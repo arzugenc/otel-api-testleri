@@ -1,0 +1,32 @@
+-- 1. Tablo Oluşturma
+CREATE TABLE IF NOT EXISTS test_rezervasyon (
+    booking_id INT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    total_price INT NOT NULL,
+    deposit_paid BOOLEAN NOT NULL,
+    checkin DATE,
+    checkout DATE,
+    additional_needs VARCHAR(100)
+);
+
+-- 2. Veri Ekleme (POST Doğrulaması Öncesi Simülasyon)
+INSERT INTO test_rezervasyon (booking_id, firstname, lastname, total_price, deposit_paid, checkin, checkout, additional_needs)
+VALUES (3079, 'Ahmet', 'Yilmaz', 150, true, '2026-10-01', '2026-10-05', 'Kahvalti');
+
+-- 3. Data Integrity (Veri Tutarlılığı) Kontrolü
+SELECT * FROM test_rezervasyon WHERE booking_id = 3079;
+
+-- 4. Güncelleme (PUT) Kontrolü
+UPDATE test_rezervasyon 
+SET total_price = 200, additional_needs = 'Aksam Yemegi'
+WHERE booking_id = 3079;
+
+SELECT booking_id, total_price, additional_needs 
+FROM test_rezervasyon 
+WHERE booking_id = 3079;
+
+-- 5. Silme (DELETE) ve 0 Kayıt Doğrulaması
+DELETE FROM test_rezervasyon WHERE booking_id = 3079;
+
+SELECT * FROM test_rezervasyon WHERE booking_id = 3079;
