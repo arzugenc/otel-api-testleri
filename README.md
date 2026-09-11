@@ -1,13 +1,16 @@
-\## 🎯 Test Kapsamı
+Manuel test kapsamında;
+1.Giriş yap ve Token al
+2.Rezervasyon oluştur
+3.Rezervasyon detaylarını getir
+4.Rezervasyonu güncelle
+5.Rezervasyonu sil 
+6.Hatalı şifre ile giriş
+7.Yetkisiz rezervasyonu silme 
+8.Geçersiz ID ile rezervasyon getir
 
-[x] \*\*Auth (Kimlik Doğrulama):\*\* Token üretimi ve ortam değişkenine dinamik aktarımı (`POST /auth`)
-[+ ] \*\*Booking (Rezervasyon):\*\*
 
- [+ ] Yeni rezervasyon oluşturma (`POST /booking`)
-[ +] Rezervasyon detaylarını sorgulama (`GET /booking/:id`)
-[ +] Rezervasyon güncelleme (`PUT /booking/:id`)
-[+ ] Rezervasyon silme (`DELETE /booking/:id`)
 
+    
 
 
 
